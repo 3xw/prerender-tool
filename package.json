@@ -1,0 +1,22 @@
+{
+  "name": "prerender-tool",
+  "version": "0.0.1",
+  "bin": {
+    "prerender": "bin/prerender"
+  },
+  "description": "Prerender util",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "puppeteer": "^1.15.0",
+    "redis": "^2.8.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
+  },
+  "homepage": "https://github.com/3xw/prerender-tool#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/3xw/prerender-tool"
+  }
+}
