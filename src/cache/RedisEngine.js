@@ -22,6 +22,7 @@ class RedisEngine extends AbstractEngine
   {
     this.client.quit()
     this.client = null
+    console.log(chalk.magentaBright(' - RedisEngine destroyed'))
   }
 
   write(key, value)

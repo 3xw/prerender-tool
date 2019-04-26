@@ -1,9 +1,7 @@
 {
   "name": "prerender-tool",
   "version": "0.0.1",
-  "bin": {
-    "prerender": "bin/prerender"
-  },
+  "main": "index.js",
   "description": "Prerender util",
   "author": "",
   "license": "ISC",

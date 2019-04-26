@@ -1,9 +1,10 @@
 const
-  RedisEngine = require('../src/cache/RedisEngine'),
-  cache = new RedisEngine({
-    duration: 120
-  })
+PrerenderTool = require('../index.js')
 
-console.log(cache.write('test','test'))
 
-cache.destroy()
+
+;(async () => {
+
+  const prerender = await PrerenderTool.create()
+  await prerender.destroy()
+})()

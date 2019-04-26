@@ -17,7 +17,7 @@ class AbstractEngine
 
   error(err)
   {
-    console.log(chalk.red('E - ', err))
+    console.log(chalk.red(' E',this.constructor.name+' -', err))
     return this
   }
 
