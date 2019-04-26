@@ -1,6 +1,6 @@
 {
   "name": "prerender-tool",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "PrerenderTool.js",
   "description": "Prerender util",
   "author": "",
