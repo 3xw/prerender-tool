@@ -1,10 +1,10 @@
 # prerender-tool
-Prerender util that generates html content ready to cache where you want ( redis / files / whatever). And can also create/maintain a sitemap.xml
+- Prerender util that generates html content ready to cache where you want ( redis / files / whatever).
+- And can also create/maintain a sitemap.xml
 
 This packages is build on top of
 
 - puppeteer
-- redux
 
 It offers you a solid toll to crate bin taks using the power of js
 
