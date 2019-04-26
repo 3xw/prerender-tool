@@ -24,6 +24,7 @@ It offers you a solid toll to crate bin taks using the power of js
 
 ## use
 
+	```js
 	const
 	{ PrerenderTool, FileEngine, RedisEngine } = require('prerender-tool.js'),
 	moment = require('moment'),
@@ -63,6 +64,6 @@ It offers you a solid toll to crate bin taks using the power of js
 	}
 
 	run()
-
+	```
 
 Have fun 👌
