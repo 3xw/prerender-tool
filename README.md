@@ -25,7 +25,7 @@ It offers you a solid toll to crate bin taks using the power of js
 ## use
 
 	const
-	{ PrerenderTool, FileEngine, RedisEngine } = require('../PrerenderTool.js'),
+	{ PrerenderTool, FileEngine, RedisEngine } = require('prerender-tool.js'),
 	moment = require('moment'),
 	run = async () =>
 	{
