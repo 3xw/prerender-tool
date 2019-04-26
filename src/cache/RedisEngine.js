@@ -23,14 +23,18 @@ class RedisEngine extends AbstractEngine
     this.client.quit()
     this.client = null
     console.log(chalk.magentaBright(' - RedisEngine destroyed'))
+    return true
+  }
+
+  read(key)
+  {
+    return this.client.get(key)
   }
 
   write(key, value)
   {
     key = this.opts.prefix + key
     if(this.duration == 0) return this.client.set(key, value)
-    console.log(this.duration);
-    console.log(this.opts);
     return this.client.set(key, value, 'EX', this.duration)
   }
 

@@ -21,6 +21,8 @@ class AbstractEngine
     return this
   }
 
+  read(key){}
+
   write(key, value)
   {
     return true
@@ -52,6 +54,7 @@ class AbstractEngine
 
   destroy()
   {
+    console.log(chalk.magentaBright(' -',this.constructor.name,'destroyed'))
     return true
   }
 }
