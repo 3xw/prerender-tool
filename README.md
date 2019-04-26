@@ -21,16 +21,16 @@ const
 run = async () =>
 {
 	//the class
-  const prerender = await PrerenderTool.create()
+	const prerender = await PrerenderTool.create()
 
 	// parse urls
-  await prerender.parse([
+	await prerender.parse([
 		{key:'index.html', url:'https://ginduvallon.ch'},
-    {key:'/a-propos.html', url:'https://ginduvallon.ch/a-propos'},
-  ])
+		{key:'/a-propos.html', url:'https://ginduvallon.ch/a-propos'},
+	])
 
 	// and go sleep
-  await prerender.destroy()
+	await prerender.destroy()
 }
 
 // run code!
@@ -39,7 +39,7 @@ run()
 
 create sitemap.xml:
 ```js
-	await prerender.buildSitemap(__dirname+'/../../sitemap.xml')
+await prerender.buildSitemap(__dirname+'/../../sitemap.xml')
 ```
 
 cache as files:
@@ -51,52 +51,61 @@ const prerender = await PrerenderTool.create({
 //import FileEngine first: { PrerenderTool, FileEngine } = require('prerender-tool.js')
 ```
 
+pass options for [npm-redis](https://github.com/NodeRedis/node_redis#rediscreateclient):
+```js
+const prerender = await PrerenderTool.create({
+	prefix: 'prerender:',
+	duration: 3600, // 0 means forever default is 3600
+	createOptions: {} // directly pass to redis client see doc
+})
+```
+
 create provide urls then parse:
 ```js
-	await prerender.setParseList({key:'', url:'https://dev.ginduvallon.ch'})
-	await prerender.parse()
+await prerender.setParseList({key:'', url:'https://dev.ginduvallon.ch'})
+await prerender.parse()
 ```
 
 do both in one:
 ```js
-	await prerender.parse({key:'', url:'https://dev.ginduvallon.ch'})
+await prerender.parse({key:'', url:'https://dev.ginduvallon.ch'})
 ```
 
 provide a good sitemap and customise your urls:
 ```js
-	await prerender.parse({
+await prerender.parse({
 
-		// min required
-		key:'index.html',
-		url:'https://dev.ginduvallon.ch',
+	// min required
+	key:'index.html',
+	url:'https://dev.ginduvallon.ch',
 
-		// site map
-		// see https://www.npmjs.com/package/xmlbuilder for syntax and https://www.sitemaps.org/protocol.html
-		sitemap:
+	// site map
+	// see https://www.npmjs.com/package/xmlbuilder for syntax and https://www.sitemaps.org/protocol.html
+	sitemap:
+	{
+		priority:
 		{
-			priority:
-			{
-				'#text':1
-			},
-			changefreq:
-			{
-				'#text':'monthly'
-			},
-			lastmod:
-			{
-				'#text':moment().format('YYYY-MM-DD')
-			}
-		}
-
-		// parser options
-		// see https://github.com/GoogleChrome/puppeteer/blob/v1.15.0/docs/api.md#pagegotourl-options
-		opts:
-		{
-			waitUntil: 'networkidle2'
+			'#text':1
 		},
-	})
+		changefreq:
+		{
+			'#text':'monthly'
+		},
+		lastmod:
+		{
+			'#text':moment().format('YYYY-MM-DD')
+		}
+	}
 
-	await prerender.buildSitemap(__dirname+'/../../sitemap.xml')
+	// parser options
+	// see https://github.com/GoogleChrome/puppeteer/blob/v1.15.0/docs/api.md#pagegotourl-options
+	opts:
+	{
+		waitUntil: 'networkidle2'
+	},
+})
+
+await prerender.buildSitemap(__dirname+'/../../sitemap.xml')
 ```
 
 full example:
@@ -108,23 +117,23 @@ moment = require('moment'),
 run = async () =>
 {
 
-  const prerender = await PrerenderTool.create({
-    cacheOpts:
-    {
-      prefix: 'dev.ginduvallon.ch:',
-      duration: 120
-    }
-  })
-  await prerender.parse([
+	const prerender = await PrerenderTool.create({
+		cacheOpts:
+		{
+			prefix: 'dev.ginduvallon.ch:',
+			duration: 120
+		}
+	})
+	await prerender.parse([
 
 		{key:'', url:'https://dev.ginduvallon.ch'},
-    {key:'/a-propos', url:'https://dev.ginduvallon.ch/a-propos'},
+		{key:'/a-propos', url:'https://dev.ginduvallon.ch/a-propos'},
 		{key:'/contact',url:'https://dev.ginduvallon.ch/contact'},
-  ])
+	])
 
-  await prerender.buildSitemap(__dirname+'/../../sitemap.xml')
+	await prerender.buildSitemap(__dirname+'/../../sitemap.xml')
 
-  await prerender.destroy()
+	await prerender.destroy()
 }
 
 run()
