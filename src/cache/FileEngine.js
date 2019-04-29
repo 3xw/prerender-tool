@@ -11,7 +11,6 @@ class FileEngine extends AbstractEngine
       prefix: 'tmp/',
     }
     super(Object.assign(_opts, opts))
-    console.log(chalk.magentaBright(' - RedisEngine destroyed'))
   }
 
   async read(path, opts = 'utf8')
