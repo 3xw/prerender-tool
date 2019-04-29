@@ -3,7 +3,7 @@
   "version": "0.0.7",
   "main": "PrerenderTool.js",
   "description": "Prerender util",
-  "author": "",
+  "author": "awallef",
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.2",
@@ -16,5 +16,20 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/3xw/prerender-tool"
-  }
+  },
+  "keywords": [
+    "prerender",
+    "spa",
+    "ssr",
+    "serverside-rendering",
+    "puppeteer",
+    "headless-chrome",
+    "chrome",
+    "headless",
+    "redis",
+    "nginx",
+    "promise",
+    "async",
+    "await"
+  ]
 }
