@@ -9,9 +9,9 @@ This packages is build on top of
 It offers you a solid toll to crate bin taks using the power of js
 
 ## Install
-
+```sh
 npm install prerender-tool
-
+```
 
 ## Use
 render in redis
