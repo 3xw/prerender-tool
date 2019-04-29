@@ -139,10 +139,9 @@ run = async () =>
 run()
 ```
 
-#Nginx
+## Nginx
 ```nginx
 server {
-
 	listen 443;
   server_name example.com;
 
