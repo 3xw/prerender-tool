@@ -10,7 +10,7 @@ It offers you a solid toll to crate bin taks using the power of js
 
 ## Install
 
-	npm install prerender-tool
+npm install prerender-tool
 
 
 ## Use
@@ -140,91 +140,94 @@ run()
 ```
 
 ## Nginx
+
+redis example:
+
 ```nginx
 server {
 	listen 443;
-  server_name example.com;
+	server_name example.com;
 
-  ssl on;
-  ssl_certificate /etc/nginx/ssl/global_self_signed/global.crt;
-  ssl_certificate_key /etc/nginx/ssl/global_self_signed/global.key;
+	ssl on;
+	ssl_certificate /etc/nginx/ssl/global_self_signed/global.crt;
+	ssl_certificate_key /etc/nginx/ssl/global_self_signed/global.key;
 
-  #logs off
-  access_log off;
-  log_not_found off;
+	#logs off
+	access_log off;
+	log_not_found off;
 
-  # root directive should be global
-  root /data01/sites/example.com/dev/example.com/dist;
-  index index.html;
+	# root directive should be global
+	root /data01/sites/example.com/dev/example.com/dist;
+	index index.html;
 
-  # such as .htaccess, .htpasswd, .DS_Store (Mac).
-  location ~ /\. {
-    deny all;
-  }
+	# such as .htaccess, .htpasswd, .DS_Store (Mac).
+	location ~ /\. {
+		deny all;
+	}
 
-  # Media: images, icons, video, audio, HTC
-  location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|otf|ttf|eot|woff|woff2|svgz|mp4|ogg|ogv|webm|webp|htc)$ {
-    expires 1M;
-    access_log off;
-    add_header Vary Accept-Encoding;
-    add_header Cache-Control "public";
-    try_files $uri @rewrites;
-  }
+	# Media: images, icons, video, audio, HTC
+	location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|otf|ttf|eot|woff|woff2|svgz|mp4|ogg|ogv|webm|webp|htc)$ {
+		expires 1M;
+		access_log off;
+		add_header Vary Accept-Encoding;
+		add_header Cache-Control "public";
+		try_files $uri @rewrites;
+	}
 
-  ## All static files will be served directly.
-  location ~* ^.+\.(?:css|cur|js|xml)$ {
-    expires 1M;
-    access_log off;
-    add_header Vary Accept-Encoding;
-    add_header Cache-Control "public";
-    try_files $uri @rewrites;
-  }
+	## All static files will be served directly.
+	location ~* ^.+\.(?:css|cur|js|xml)$ {
+		expires 1M;
+		access_log off;
+		add_header Vary Accept-Encoding;
+		add_header Cache-Control "public";
+		try_files $uri @rewrites;
+	}
 
-  ## All other files
-  location / {
-    try_files $uri @prerender;
-  }
+	## All other files
+	location / {
+		try_files $uri @prerender;
+	}
 
-  location @prerender {
+	location @prerender {
 
-    set $prerender 0;
+		set $prerender 0;
 
-    if ($http_user_agent ~* "baiduspider|twitterbot|facebookexternalhit|rogerbot|linkedinbot|embedly|quora link preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator") {
-        set $prerender 1;
-    }
-    if ($args ~ "_escaped_fragment_") {
-        set $prerender 1;
-    }
-    if ($http_user_agent ~ "Prerender") {
-        set $prerender 0;
-    }
-    if ($uri ~ "\.(php|json|js|css|xml|less|png|jpg|jpeg|gif|pdf|doc|txt|ico|rss|zip|mp3|rar|exe|wmv|doc|avi|ppt|mpg|mpeg|tif|wav|mov|psd|ai|xls|mp4|m4a|swf|dat|dmg|iso|flv|m4v|torrent|ttf|woff)") {
-        set $prerender 0;
-    }
+		if ($http_user_agent ~* "baiduspider|twitterbot|facebookexternalhit|rogerbot|linkedinbot|embedly|quora link preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator") {
+			set $prerender 1;
+		}
+		if ($args ~ "_escaped_fragment_") {
+			set $prerender 1;
+		}
+		if ($http_user_agent ~ "Prerender") {
+			set $prerender 0;
+		}
+		if ($uri ~ "\.(php|json|js|css|xml|less|png|jpg|jpeg|gif|pdf|doc|txt|ico|rss|zip|mp3|rar|exe|wmv|doc|avi|ppt|mpg|mpeg|tif|wav|mov|psd|ai|xls|mp4|m4a|swf|dat|dmg|iso|flv|m4v|torrent|ttf|woff)") {
+			set $prerender 0;
+		}
 
-     # set redis settings  "$host:"
-    set $redis_key  "$host:$request_uri";
-    if ($args) {
-      set $redis_key  "$host:$request_uri?$args";
-    }
+		# set redis settings  "$host:"
+		set $redis_key  "$host:$request_uri";
+		if ($args) {
+			set $redis_key  "$host:$request_uri?$args";
+		}
 
-    if ($prerender = 1) {
+		if ($prerender = 1) {
 
-      # response header
-      set $custom_response_header "text/html; charset=UTF-8";
+			# response header
+			set $custom_response_header "text/html; charset=UTF-8";
 
-      redis_pass redis01.aws.3xw:6379;
-      error_page 404 405 502 504 = @fallback;
-      more_set_headers "Content-Type: $custom_response_header";
-    }
+			redis_pass redis01.aws.3xw:6379;
+			error_page 404 405 502 504 = @fallback;
+			more_set_headers "Content-Type: $custom_response_header";
+		}
 
-    try_files $uri $uri/ @rewrites;
-  }
+		try_files $uri $uri/ @rewrites;
+	}
 
-   #try vue
-  location @rewrites {
-    rewrite ^(.+)$ /index.html last;
-  }
+	#try vue
+	location @rewrites {
+		rewrite ^(.+)$ /index.html last;
+	}
 }
 ```
 
