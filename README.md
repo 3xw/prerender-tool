@@ -17,7 +17,7 @@ npm install prerender-tool
 render in redis
 ```js
 const
-{ PrerenderTool } = require('prerender-tool.js'),
+{ PrerenderTool } = require('prerender-tool'),
 run = async () =>
 {
 	//the class
@@ -48,7 +48,7 @@ const prerender = await PrerenderTool.create({
 	cache: new FileEngine({prefix: __dirname+'/../tmp/'}) // we pass a file cache engine
 })
 
-//import FileEngine first: { PrerenderTool, FileEngine } = require('prerender-tool.js')
+//import FileEngine first: { PrerenderTool, FileEngine } = require('prerender-tool')
 ```
 
 pass options for [npm-redis](https://github.com/NodeRedis/node_redis#rediscreateclient):
@@ -112,7 +112,7 @@ full example:
 
 ```js
 const
-{ PrerenderTool, FileEngine, RedisEngine } = require('prerender-tool.js'),
+{ PrerenderTool, FileEngine, RedisEngine } = require('prerender-tool'),
 moment = require('moment'),
 run = async () =>
 {
