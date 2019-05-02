@@ -281,7 +281,7 @@ npm i prerender-tool
 
 ```bash
 ├── bin
-|		└── prerender.js (your bin goes here)
+|  └── prerender.js (your bin goes here)
 ├── prerender (folder for your prerendered files)
 ├── dist (or build)
 ├── node_modules
