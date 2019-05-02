@@ -8,9 +8,9 @@ This packages is build on top of
 
 It offers you a solid tool to crate a bin task using the power of js
 
-1 [Install](#install)
-2 [Usage](#usage)
-3 [Full Examples](#examples)
+1. [Install](#install)
+2. [Usage](#usage)
+3. [Full Examples](#examples)
 - [Prerender in redis](#redis)
 - [Prerender in file system](#fs)
 
