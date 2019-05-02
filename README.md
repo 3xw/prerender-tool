@@ -139,11 +139,7 @@ npm i prerender-tool
 ```js
 #!/usr/bin/env node
 const
-<<<<<<< HEAD
-{ PrerenderTool, RedisEngine } = require('prerender-tool'),
-=======
-{ PrerenderTool, FileEngine, RedisEngine } = require('prerender-tool'),
->>>>>>> origin/master
+{ PrerenderTool} = require('prerender-tool'),
 moment = require('moment'),
 run = async () =>
 {
@@ -299,7 +295,7 @@ npm i prerender-tool
 ```js
 #!/usr/bin/env node
 const
-{ PrerenderTool, RedisEngine } = require('prerender-tool'),
+{ PrerenderTool, FileEngine } = require('prerender-tool'),
 moment = require('moment'),
 run = async () =>
 {
