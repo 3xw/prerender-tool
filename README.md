@@ -126,7 +126,7 @@ npm i prerender-tool
 #### Directory Structure
 ```bash
 ├── bin
-|		└── prerender.js (your bin goes here)
+|  └── prerender.js (your bin goes here)
 ├── dist (or build)
 ├── node_modules
 ├── src
