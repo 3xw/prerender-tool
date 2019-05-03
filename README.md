@@ -77,39 +77,45 @@ do both in one:
 await prerender.parse({key:'', url:'https://dev.ginduvallon.ch'})
 ```
 
-### provide a good sitemap and customise your urls:
+### provide a good sitemap and customise your urls + pass chrome options
 ```js
-await prerender.parse({
+await prerender.parse([
 
-	// min required
-	key:'index.html',
-	url:'https://dev.ginduvallon.ch',
+	// here default sitmap record will apply
+	{key:'/a-propos.html', url:'https://ginduvallon.ch/a-propos'},
 
-	// site map
-	// see https://www.npmjs.com/package/xmlbuilder for syntax and https://www.sitemaps.org/protocol.html
-	sitemap:
+	// here extra fields form sitemap key will apply additionally
 	{
-		priority:
+		// min required
+		key:'index.html',
+		url:'https://dev.ginduvallon.ch',
+
+		// site map
+		// see https://www.npmjs.com/package/xmlbuilder for syntax and https://www.sitemaps.org/protocol.html
+		sitemap:
 		{
-			'#text':1
-		},
-		changefreq:
-		{
-			'#text':'monthly'
-		},
-		lastmod:
-		{
-			'#text':moment().format('YYYY-MM-DD')
+			priority:
+			{
+				'#text':1
+			},
+			changefreq:
+			{
+				'#text':'monthly'
+			},
+			lastmod:
+			{
+				'#text':moment().format('YYYY-MM-DD')
+			}
 		}
-	}
 
-	// parser options
-	// see https://github.com/GoogleChrome/puppeteer/blob/v1.15.0/docs/api.md#pagegotourl-options
-	opts:
-	{
-		waitUntil: 'networkidle2'
-	},
-})
+		// parser options => chrome options
+		// see https://github.com/GoogleChrome/puppeteer/blob/v1.15.0/docs/api.md#pagegotourl-options
+		opts:
+		{
+			waitUntil: 'networkidle2'
+		},
+	}
+])
 
 await prerender.buildSitemap(__dirname+'/../../sitemap.xml')
 ```
