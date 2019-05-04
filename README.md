@@ -68,13 +68,13 @@ const prerender = await PrerenderTool.create({
 
 ### create provide urls then parse:
 ```js
-await prerender.setParseList({key:'', url:'https://dev.ginduvallon.ch'})
+await prerender.setParseList([{key:'', url:'https://dev.ginduvallon.ch'}])
 await prerender.parse()
 ```
 
 do both in one:
 ```js
-await prerender.parse({key:'', url:'https://dev.ginduvallon.ch'})
+await prerender.parse([{key:'', url:'https://dev.ginduvallon.ch'}])
 ```
 
 ### provide a good sitemap and customise your urls + pass chrome options
