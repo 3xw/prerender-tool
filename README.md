@@ -163,7 +163,7 @@ run = async () =>
   })
   await prerender.parse([
     {key:'/', url:'https://dev.ginduvallon.ch'},
-    {key:'/a-propos', url:'https://dev.ginduvallon.ch/a-propos'},
+    {key:'/a-propos', url:'https://dev.ginduvallon.ch/a-propos',opts: {waitUntil: 'networkidle0'}}, // see https://github.com/puppeteer/puppeteer/blob/v1.15.0/docs/api.md#pagegotourl-options for types of waits
     {key:'/contact',url:'https://dev.ginduvallon.ch/contact'},
   ])
 
@@ -311,7 +311,7 @@ run = async () =>
   })
   await prerender.parse([
     {key:'/index.html', url:'https://dev.ginduvallon.ch'},
-    {key:'/a-propos.html', url:'https://dev.ginduvallon.ch/a-propos'},
+    {key:'/a-propos.html', url:'https://dev.ginduvallon.ch/a-propos',opts: {waitUntil: 'networkidle0'}}, // see https://github.com/puppeteer/puppeteer/blob/v1.15.0/docs/api.md#pagegotourl-options for types of waits
     {key:'/contact.html',url:'https://dev.ginduvallon.ch/contact'},
   ])
 
