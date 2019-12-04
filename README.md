@@ -237,7 +237,7 @@ server {
 
 		set $prerender 0;
 
-		if ($http_user_agent ~* "baiduspider|twitterbot|facebookexternalhit|rogerbot|linkedinbot|embedly|quora link preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator") {
+		if ($http_user_agent ~* "googlebot|bingbot|yandex|baiduspider|facebookexternalhit|twitterbot|rogerbot|linkedinbot|embedly|bufferbot|quora link preview|showyoubot|outbrain|pinterest/0.|developers.google.com/+/web/snippet|www.google.com/webmasters/tools/richsnippets|slackbot|vkShare|W3C_Validator|redditbot|Applebot|WhatsApp|flipboard|tumblr|bitlybot|SkypeUriPreview|nuzzel|Discordbot|Google Page Speed|Qwantify") {
 			set $prerender 1;
 		}
 		if ($args ~ "_escaped_fragment_") {
