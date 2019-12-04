@@ -7,6 +7,10 @@ config/main.js
 ######################
 tmp/
 
+# dist
+######################
+dist/
+
 # OS generated files #
 ######################
 .DS_Store

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const
 { PrerenderTool, FileEngine, RedisEngine } = require('../PrerenderTool.js'),
 moment = require('moment'),
