@@ -10,17 +10,51 @@ It offers you a solid tool to crate a bin task using the power of js
 
 1. [Install](#install)
 2. [Usage](#usage)
-3. [Full Examples](#examples)
-- [Prerender in redis](#redis)
-- [Prerender in file system](#fs)
+3. [Full Examples:](#examples)
+	- [Prerender in redis](#redis)
+	- [Prerender in file system](#fs)
 
 ## <a name="install"></a>Install
 ```sh
 npm install prerender-tool
 ```
+### With your own chromium (optional):
+add the two following files to your project:
+
+```bash
+├── ...
+├── .npmrc
+├── .env
+├── ...
+```
+
+in .npmrc
+
+```bash
+puppeteer_skip_chromium_download=true
+```
+
+in .env
+
+```bash
+PUPPETEER_EXECUTABLE_PATH='/path/to/your/own/bin/chrome'
+```
+
+then later in the constructor add executablePath in the browserOpts options:
+
+```js
+...
+const prerender = await PrerenderTool.create({
+	browserOpts:{
+		executablePath: process.env.PUPPETEER_EXECUTABLE_PATH
+	}
+})
+...
+```
 
 ## <a name="usage"></a>Usage
 render in redis
+
 ```js
 const
 { PrerenderTool } = require('prerender-tool'),
@@ -58,6 +92,7 @@ const prerender = await PrerenderTool.create({
 ```
 ### configure nginx
 pass options for [npm-redis](https://github.com/NodeRedis/node_redis#rediscreateclient):
+
 ```js
 const prerender = await PrerenderTool.create({
 	prefix: 'prerender:',
@@ -73,6 +108,7 @@ await prerender.parse()
 ```
 
 do both in one:
+
 ```js
 await prerender.parse([{key:'', url:'https://dev.ginduvallon.ch'}])
 ```
@@ -185,8 +221,9 @@ bin/prerender.js
 #### Nginx
 
 redis with:
-- [ngx_redis](https://github.com/onnimonni/redis-nginx-module)
-- [ngx_headers_more](https://github.com/openresty/headers-more-nginx-module)
+
+* [ngx_redis](https://github.com/onnimonni/redis-nginx-module)
+* [ngx_headers_more](https://github.com/openresty/headers-more-nginx-module)
 
 ```nginx
 server {
