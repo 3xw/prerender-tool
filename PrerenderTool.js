@@ -15,7 +15,8 @@ class PrerenderTool
       cacheOpts:
       {
         duration: 3600
-      }
+      },
+      browserOpts:{}
     }
     this.opts = Object.assign(_opts, opts)
     this.parseList = this.opts.parseList
@@ -52,7 +53,7 @@ class PrerenderTool
 
   async _launchBrowser()
   {
-    this.browser = await puppeteer.launch();
+    this.browser = await puppeteer.launch(this.opts.browserOpts);
     console.log(chalk.magentaBright(' - Prerender',this.browser.constructor.name,'launched'))
   }
 
